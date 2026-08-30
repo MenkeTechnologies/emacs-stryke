@@ -13,7 +13,7 @@
 
 ### `[EMACS MAJOR MODE // NEON FONT-LOCK // COMPLETE BUILTIN SURFACE // LSP]`
 
-> *"Open a `.stk`. The whole language lights up — all 10,409 builtins."*
+> *"Open a `.stk`. The whole language lights up — all 10,452 builtins."*
 
 Emacs major mode (`stryke-mode`) for **[stryke](https://github.com/MenkeTechnologies/strykelang)** — a highly parallel Perl 5 superset interpreter written in Rust. Font-lock driven by the binary's own reflection tables, filetype detection, brace-aware indentation, and LSP via `stryke --lsp` (eglot + lsp-mode).
 
@@ -32,11 +32,11 @@ Emacs major mode (`stryke-mode`) for **[stryke](https://github.com/MenkeTechnolo
 
 The builtin tables in `stryke-stdlib.el` are **generated** (`scripts/gen-stdlib.sh`) directly from the stryke binary's own reflection tables, so they carry every builtin and never drift:
 
-- **all 10,409 builtins** — `stryke -E 'p join "\n", sort keys %b'`
+- **all 10,452 builtins** — `stryke -E 'p join "\n", sort keys %b'`
 - the 90 keywords — `stryke -E 'p join "\n", sort keys %k'`
 - the 39 parallel primitives — `stryke -E 'p join "\n", sort @{$c{parallel}}'`
 
-Because a single `regexp-opt` over ~10,409 names overflows Emacs' regexp compiler (`"Regular expression too big"`), the builtins are stored as **hash tables** and matched by a font-lock matcher function that looks up each identifier in O(1).
+Because a single `regexp-opt` over ~10,452 names overflows Emacs' regexp compiler (`"Regular expression too big"`), the builtins are stored as **hash tables** and matched by a font-lock matcher function that looks up each identifier in O(1).
 
 Created by **[MenkeTechnologies](https://github.com/MenkeTechnologies)**.
 
@@ -48,7 +48,7 @@ Created by **[MenkeTechnologies](https://github.com/MenkeTechnologies)**.
 |---|---|
 | Filetype detection — `*.stk` | **Implemented** — `auto-mode-alist` |
 | Filetype detection — shebang | **Implemented** — `interpreter-mode-alist` (`stryke`) |
-| Syntax highlighting | **Implemented** — font-lock, all 10,409 builtins via hash-table matcher |
+| Syntax highlighting | **Implemented** — font-lock, all 10,452 builtins via hash-table matcher |
 | Comments | **Implemented** — `#` line comments via syntax table |
 | Indentation | **Implemented** — brace-aware `stryke-indent-line` |
 | Language server (eglot) | **Implemented** — `stryke --lsp` |
@@ -92,7 +92,7 @@ Open any `.stk` file — it lights up. With eglot, run `M-x eglot` to start the 
 | Phase hooks (`BEGIN` `END` `INIT`) | `font-lock-preprocessor-face` |
 | Word operators (`and` `or` `eq` `cmp` `x`) | `font-lock-keyword-face` |
 | Parallel builtins (39) | `stryke-parallel-face` |
-| Builtins (10,409) | `font-lock-builtin-face` |
+| Builtins (10,452) | `font-lock-builtin-face` |
 | Types (`Int` `Str` `Float` `Hash`) | `font-lock-type-face` |
 | Booleans / undef / magic | `font-lock-constant-face` |
 | Sigil variables, `$_` topic | `font-lock-variable-name-face` |
@@ -132,7 +132,7 @@ emacs --batch -L . -l scripts/face-test.el
 ```
 emacs-stryke/
 ├── stryke-mode.el          # major mode: syntax table, font-lock, indent, LSP
-├── stryke-stdlib.el        # generated: builtin/parallel hash tables (10,409)
+├── stryke-stdlib.el        # generated: builtin/parallel hash tables (10,452)
 ├── scripts/gen-stdlib.sh   # regenerates stryke-stdlib.el from the stryke binary
 ├── scripts/gen-stdlib.el   # the Elisp generator (hash-table building)
 └── scripts/face-test.el    # fontifies a sample and asserts faces

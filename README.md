@@ -55,7 +55,7 @@ Created by **[MenkeTechnologies](https://github.com/MenkeTechnologies)**.
 | Language server (lsp-mode) | **Implemented** — registered client |
 | Config | `stryke-executable`, `stryke-indent-offset` |
 
-> The `stryke` binary must be on `$PATH` for the language server. `brew install stryke`, or build **[strykelang](https://github.com/MenkeTechnologies/strykelang)**.
+> The `stryke` binary must be on `$PATH` for the language server. `brew install menketechnologies/menketech/stryke`, or build **[strykelang](https://github.com/MenkeTechnologies/strykelang)**.
 
 ---
 
